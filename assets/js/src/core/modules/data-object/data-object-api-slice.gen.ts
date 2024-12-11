@@ -221,41 +221,7 @@ export type DataObjectGetTreeApiArg = {
     /** Include all descendants in the result. */
     pathIncludeDescendants?: boolean;
     /** Filter by class. */
-    className?:
-        | "AccessoryPart"
-        | "asdf"
-        | "BodyStyle"
-        | "Car"
-        | "Category"
-        | "ComplexLayout"
-        | "Customer"
-        | "CustomerSegment"
-        | "CustomerSegmentGroup"
-        | "datatypetest"
-        | "datetest"
-        | "Event"
-        | "fieldtest"
-        | "FilterDefinition"
-        | "foo5"
-        | "LinkActivityDefinition"
-        | "Manufacturer"
-        | "mappingTest"
-        | "News"
-        | "OfferToolCustomProduct"
-        | "OfferToolOffer"
-        | "OfferToolOfferItem"
-        | "OnlineShopOrder"
-        | "OnlineShopOrderItem"
-        | "OnlineShopTaxClass"
-        | "OnlineShopVoucherSeries"
-        | "OnlineShopVoucherToken"
-        | "PortalUser"
-        | "PortalUserGroup"
-        | "simple"
-        | "StudioFieldTypeTest"
-        | "TermSegmentBuilderDefinition"
-        | "Test"
-        | "unittest";
+    className?: string;
 };
 export type Error = {
     /** Message */

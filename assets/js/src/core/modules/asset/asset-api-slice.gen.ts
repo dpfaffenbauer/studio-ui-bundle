@@ -185,6 +185,24 @@ const injectedRtkApi = api
                 }),
                 providesTags: ["Assets"],
             }),
+            assetImageStreamCustom: build.query<AssetImageStreamCustomApiResponse, AssetImageStreamCustomApiArg>({
+                query: (queryArg) => ({
+                    url: `/pimcore-studio/api/assets/${queryArg.id}/image/stream/custom`,
+                    params: {
+                        mimeType: queryArg.mimeType,
+                        resizeMode: queryArg.resizeMode,
+                        width: queryArg.width,
+                        height: queryArg.height,
+                        quality: queryArg.quality,
+                        dpi: queryArg.dpi,
+                        contain: queryArg.contain,
+                        frame: queryArg.frame,
+                        cover: queryArg.cover,
+                        forceResize: queryArg.forceResize,
+                    },
+                }),
+                providesTags: ["Assets"],
+            }),
             assetImageDownloadByFormat: build.query<
                 AssetImageDownloadByFormatApiResponse,
                 AssetImageDownloadByFormatApiArg
@@ -599,6 +617,32 @@ export type AssetImageDownloadCustomApiArg = {
     quality?: number;
     /** Dpi of downloaded image */
     dpi?: number;
+};
+export type AssetImageStreamCustomApiResponse =
+    /** status 200 Image asset stream based on custom thumbnail configuration */ Blob;
+export type AssetImageStreamCustomApiArg = {
+    /** Id of the image */
+    id: number;
+    /** Mime type of downloaded image. */
+    mimeType: "JPEG" | "PNG";
+    /** Resize mode of downloaded image. */
+    resizeMode: "resize" | "scaleByWidth" | "scaleByHeight";
+    /** Width of downloaded image */
+    width?: number;
+    /** Height of downloaded image */
+    height?: number;
+    /** Quality of downloaded image */
+    quality?: number;
+    /** Dpi of downloaded image */
+    dpi?: number;
+    /** Contain */
+    contain?: boolean;
+    /** Frame */
+    frame?: boolean;
+    /** Cover */
+    cover?: boolean;
+    /** ForceResize */
+    forceResize?: boolean;
 };
 export type AssetImageDownloadByFormatApiResponse = /** status 200 Image asset binary file based on format */ Blob;
 export type AssetImageDownloadByFormatApiArg = {
@@ -1110,6 +1154,7 @@ export const {
     useAssetUpdateGridConfigurationMutation,
     useAssetGetGridMutation,
     useAssetImageDownloadCustomQuery,
+    useAssetImageStreamCustomQuery,
     useAssetImageDownloadByFormatQuery,
     useAssetImageStreamPreviewQuery,
     useAssetImageDownloadByThumbnailQuery,
